@@ -22,7 +22,7 @@ export default function EditTicket() {
                 const voyagesResponse = await axios.get("http://localhost:8099/voyages");
                 setClients(clientsResponse.data);
                 setVoyages(voyagesResponse.data);
-                const ticketResponse = await axios.get(`http://localhost:8099/ticket/${id}`);
+                const ticketResponse = await axios.get(`http://localhost:8099/tickets/${id}`);
                 console.log("Ticket Response:", ticketResponse.data);
                 const editedTicket = ticketResponse.data;
                 console.log("Edited Ticket Data:", editedTicket);
@@ -43,27 +43,21 @@ export default function EditTicket() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const updatedTicket = {
                 voyageId: parseInt(ticket.voyageId),
                 clientId: parseInt(ticket.clientId),
             };
-
-            await axios.put(`http://localhost:8099/ticket/${id}`, updatedTicket, {
+            await axios.put(`http://localhost:8099/tickets/${id}`, updatedTicket, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-
-            // Handle the success response, e.g., show a success message
             navigate("/Tickets");
         } catch (error) {
-            // Handle the error, e.g., show an error message
             toast.error("Error updating the ticket");
         }
     };
-
     if (!voyages || voyages.length === 0) {
         return <div>Loading...</div>;
     }

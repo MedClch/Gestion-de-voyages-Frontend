@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import * as XLSX from "xlsx";
 
 export default function Tickets() {
-    // const [tickets, setTickets] = useState([]);
     const [tickets, setTickets] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState("");
-    const [voyageInfo, setVoyageInfo] = useState({}); // Define state for Voyage information
+    const [voyageInfo, setVoyageInfo] = useState({});
 
     useEffect(() => {
         loadTickets();
@@ -35,7 +34,7 @@ export default function Tickets() {
 
     const deleteTicket = async (id) => {
         try {
-            await axios.delete(`http://localhost:8099/ticket/${id}`);
+            await axios.delete(`http://localhost:8099/tickets/${id}`);
             loadTickets();
         } catch (error) {
             console.error("Error deleting ticket:", error);
@@ -76,7 +75,7 @@ export default function Tickets() {
 
     const exportToExcel = () => {
         const data = tickets.map((ticket) => ({
-            "Ticket ID": ticket.id,
+            "Ticket ID": ticket.idt,
             "Depart": ticket.depart,
             "Arrivee": ticket.arrivee,
             "Prix": ticket.prix,
