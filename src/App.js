@@ -26,17 +26,21 @@ export default function App() {
             <Route path="/" element={<Clients/>}></Route>
             <Route path="/Tickets" element={<Tickets/>}></Route>
             <Route path="/Voyages" element={<Voyages/>}></Route>
+
             <Route path="/addclient" element={<AddClient/>}></Route>
             <Route path="/editclient/:id" element={<EditClient/>}></Route>
             <Route path="/viewclient/:id" element={<ViewClient/>}></Route>
+
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register/>}></Route>
-            <Route path="/addticket" element={<AddTicket/>}></Route>
-            <Route path="/editticket/:id" element={<EditTicket/>}></Route>
-            <Route path="/viewticket/:id" element={<ViewTicket/>}></Route>
+
             <Route path="/addvoyage" element={<AddVoyage/>}></Route>
             <Route path="/editvoyage/:id" element={<EditVoyage/>}></Route>
             <Route path="/viewvoyage/:id" element={<ViewVoyage/>}></Route>
+
+            <Route path="/addticket" element={<AddTicket/>}></Route>
+            <Route path="/editticket/:id" element={<EditTicket/>}></Route>
+            <Route path="/viewticket/:id" element={<ViewTicket/>}></Route>
           </Routes>
         </Router>
       </div>
