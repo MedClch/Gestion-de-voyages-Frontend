@@ -35,7 +35,7 @@ export default function Tickets() {
 
     const deleteTicket = async (id) => {
         try {
-            await axios.delete(`http://localhost:8099/ticket/${id}`);
+            await axios.delete(`http://localhost:8099/tickets/${id}`);
             loadTickets();
         } catch (error) {
             console.error("Error deleting ticket:", error);
