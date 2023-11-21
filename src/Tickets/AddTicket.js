@@ -9,7 +9,6 @@ export default function AddTicket() {
         voyageId: "",
         clientId: "",
     });
-
     const [clients, setClients] = useState([]);
     const [voyages, setVoyages] = useState([]);
 
@@ -30,7 +29,6 @@ export default function AddTicket() {
     const loadAllTickets = async () => {
         try {
             const result = await axios.get("http://localhost:8099/tickets");
-            // Handle the result, e.g., update the state to reflect the new ticket
         } catch (error) {
             toast.error("Error loading tickets");
         }
@@ -47,7 +45,6 @@ export default function AddTicket() {
                 voyageId: parseInt(ticket.voyageId),
                 clientId: parseInt(ticket.clientId),
             };
-
             await axios.post("http://localhost:8099/saveticket", newTicket, {
                 params: {
                     voyageId: newTicket.voyageId,
@@ -57,7 +54,6 @@ export default function AddTicket() {
                     'Content-Type': 'application/json',
                 },
             });
-
             await loadAllTickets();
             navigate("/Tickets");
             setTicket({
@@ -68,10 +64,6 @@ export default function AddTicket() {
             toast.error("Error saving new ticket!");
         }
     };
-
-
-
-
 
     return (
         <div className="container">
