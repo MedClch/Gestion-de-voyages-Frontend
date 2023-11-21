@@ -73,6 +73,30 @@ export default function Tickets() {
         return `${hours}:${minutes}`;
     };
 
+    // const parseDateTime = (dateTimeStr) => {
+    //     return new Date(dateTimeStr);
+    // };
+    //
+    // const formatDate = (date) => {
+    //     const day = date.getDate().toString().padStart(2, '0');
+    //     const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    //     const year = date.getFullYear();
+    //     return `${day}/${month}/${year}`;
+    // };
+    //
+    // const formatTime = (dateTimeStr) => {
+    //     const date = parseDateTime(dateTimeStr);
+    //     const hours = date.getHours().toString().padStart(2, '0');
+    //     const minutes = date.getMinutes().toString().padStart(2, '0');
+    //     return `${hours}:${minutes}`;
+    // };
+
+    // const formatTime = (date) => {
+    //     const hours = date.getHours().toString().padStart(2, '0');
+    //     const minutes = date.getMinutes().toString().padStart(2, '0');
+    //     return `${hours}:${minutes}`;
+    // };
+
 
     const exportToExcel = () => {
         const data = tickets.map((ticket) => ({
