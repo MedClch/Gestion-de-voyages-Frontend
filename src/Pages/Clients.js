@@ -57,7 +57,7 @@ export default function Clients() {
                 <div>
                     <br/>
                     <div className="input-group mb-3">
-                        <b><h7 style={{ margin: "0 15px 0 0" }}>Search : </h7></b>
+                        <b><h5 style={{ margin: "0 15px 0 0" }}>Search : </h5></b>
                         <input
                             type="text"
                             className="form-control"
