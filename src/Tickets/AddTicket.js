@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function AddTicket() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const [ticket, setTicket] = useState({
         voyageId: "",
         clientId: "",
@@ -29,6 +29,7 @@ export default function AddTicket() {
     const loadAllTickets = async () => {
         try {
             const result = await axios.get("http://localhost:8099/tickets");
+            // Do something with the result if needed
         } catch (error) {
             toast.error("Error loading tickets");
         }
@@ -45,32 +46,57 @@ export default function AddTicket() {
                 voyageId: parseInt(ticket.voyageId),
                 clientId: parseInt(ticket.clientId),
             };
-            await axios.post("http://localhost:8099/saveticket", newTicket, {
-                params: {
-                    voyageId: newTicket.voyageId,
-                    clientId: newTicket.clientId,
-                },
+
+            const response = await axios.post(`http://localhost:8099/savetickett?voyageId=${newTicket.voyageId}&clientId=${newTicket.clientId}`, newTicket, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            await loadAllTickets();
-            navigate("/Tickets");
-            setTicket({
-                voyageId: "",
-                clientId: "",
-            });
+
+            if (response.status === 201) {
+                toast.success("Ticket saved successfully!");
+                await loadAllTickets();
+                navigate("/tickets");
+            } else {
+                toast.error("Error saving new ticket!");
+            }
         } catch (error) {
             toast.error("Error saving new ticket!");
         }
     };
+
+
+
+
+
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const newTicket = {
+    //             voyageId: parseInt(ticket.voyageId),
+    //             clientId: parseInt(ticket.clientId),
+    //         };
+    //
+    //         const response = await axios.post("http://localhost:8099/saveticket", newTicket);
+    //
+    //         if (response.status === 201) {
+    //             toast.success("Ticket saved successfully!");
+    //             await loadAllTickets();
+    //             navigate("/tickets");
+    //         } else {
+    //             toast.error("Error saving new ticket!");
+    //         }
+    //     } catch (error) {
+    //         toast.error("Error saving new ticket!");
+    //     }
+    // };
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2">
                     <h2 className="text-center m-4">Buy a new ticket</h2>
-                    <form onSubmit={(e) => onSubmit(e)}>
+                    <form onSubmit={onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="voyageId" className="form-label">
                                 Select trip
@@ -79,7 +105,7 @@ export default function AddTicket() {
                                 className="form-control"
                                 name="voyageId"
                                 value={ticket.voyageId}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={onInputChange}
                             >
                                 <option value="" disabled>
                                     -- Select trip --
@@ -99,7 +125,7 @@ export default function AddTicket() {
                                 className="form-control"
                                 name="clientId"
                                 value={ticket.clientId}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={onInputChange}
                             >
                                 <option value="" disabled>
                                     -- Select client --
@@ -123,6 +149,140 @@ export default function AddTicket() {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { Link, useNavigate } from "react-router-dom";
+// import { toast } from "react-toastify";
+//
+// export default function AddTicket() {
+//     let navigate = useNavigate();
+//     const [ticket, setTicket] = useState({
+//         voyageId: "",
+//         clientId: "",
+//     });
+//     const [clients, setClients] = useState([]);
+//     const [voyages, setVoyages] = useState([]);
+//
+//     useEffect(() => {
+//         async function fetchData() {
+//             try {
+//                 const clientsResponse = await axios.get("http://localhost:8099/clients");
+//                 const voyagesResponse = await axios.get("http://localhost:8099/voyages");
+//                 setClients(clientsResponse.data);
+//                 setVoyages(voyagesResponse.data);
+//             } catch (error) {
+//                 toast.error("Error loading clients and voyages");
+//             }
+//         }
+//         fetchData();
+//     }, []);
+//
+//     const loadAllTickets = async () => {
+//         try {
+//             const result = await axios.get("http://localhost:8099/tickets");
+//         } catch (error) {
+//             toast.error("Error loading tickets");
+//         }
+//     };
+//
+//     const onInputChange = (e) => {
+//         setTicket({ ...ticket, [e.target.name]: e.target.value });
+//     };
+//
+//     const onSubmit = async (e) => {
+//         e.preventDefault();
+//         try {
+//             const newTicket = {
+//                 voyageId: parseInt(ticket.voyageId),
+//                 clientId: parseInt(ticket.clientId),
+//             };
+//             await axios.post("http://localhost:8099/saveticket", newTicket, {
+//                 params: {
+//                     voyageId: newTicket.voyageId,
+//                     clientId: newTicket.clientId,
+//                 },
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//             });
+//             await loadAllTickets();
+//             navigate("/Tickets");
+//             setTicket({
+//                 voyageId: "",
+//                 clientId: "",
+//             });
+//         } catch (error) {
+//             toast.error("Error saving new ticket!");
+//         }
+//     };
+//
+//     return (
+//         <div className="container">
+//             <div className="row">
+//                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2">
+//                     <h2 className="text-center m-4">Buy a new ticket</h2>
+//                     <form onSubmit={(e) => onSubmit(e)}>
+//                         <div className="mb-3">
+//                             <label htmlFor="voyageId" className="form-label">
+//                                 Select trip
+//                             </label>
+//                             <select
+//                                 className="form-control"
+//                                 name="voyageId"
+//                                 value={ticket.voyageId}
+//                                 onChange={(e) => onInputChange(e)}
+//                             >
+//                                 <option value="" disabled>
+//                                     -- Select trip --
+//                                 </option>
+//                                 {voyages.map((voyage) => (
+//                                     <option key={voyage.idv} value={voyage.idv}>
+//                                         {voyage.lieudepart} to {voyage.lieuarrivee}
+//                                     </option>
+//                                 ))}
+//                             </select>
+//                         </div>
+//                         <div className="mb-3">
+//                             <label htmlFor="clientId" className="form-label">
+//                                 Select client
+//                             </label>
+//                             <select
+//                                 className="form-control"
+//                                 name="clientId"
+//                                 value={ticket.clientId}
+//                                 onChange={(e) => onInputChange(e)}
+//                             >
+//                                 <option value="" disabled>
+//                                     -- Select client --
+//                                 </option>
+//                                 {clients.map((client) => (
+//                                     <option key={client.idc} value={client.idc}>
+//                                         {client.fullname} - {client.username}
+//                                     </option>
+//                                 ))}
+//                             </select>
+//                         </div>
+//                         <button type="submit" className="btn btn-outline-primary">
+//                             Submit
+//                         </button>
+//                         <Link to="/tickets" className="btn btn-outline-danger mx-2">
+//                             Cancel
+//                         </Link>
+//                     </form>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }
 
 
 
