@@ -88,6 +88,7 @@ export default function EditTicket() {
                                     </option>
                                 ))}
                             </select>
+                            
                         </div>
                         <div className="mb-3">
                             <label htmlFor="clientId" className="form-label">
