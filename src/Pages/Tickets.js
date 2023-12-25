@@ -154,9 +154,9 @@ export default function Tickets() {
                         <thead>
                         <tr>
                             <th scope="col">Ticket ID</th>
-                            <th scope="col">Depart</th>
-                            <th scope="col">Arrivee</th>
-                            <th scope="col">Prix</th>
+                            <th scope="col">Departure Time</th>
+                            <th scope="col">Arrival Time</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -176,7 +176,7 @@ export default function Tickets() {
                                 </td>
                                 <td>
                                     <b>{voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].prix
-                                        ? voyageInfo[ticket.voyage.idv].prix
+                                        ? voyageInfo[ticket.voyage.idv].prix +" DH"
                                         : "N/A"}</b>
                                 </td>
                                 <td>

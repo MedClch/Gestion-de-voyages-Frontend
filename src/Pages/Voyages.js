@@ -94,8 +94,8 @@ export default function Voyages() {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Search voyages"
-                            aria-label="Search voyages"
+                            placeholder="Search for trips"
+                            aria-label="Search for trips"
                             aria-describedby="search-icon"
                             value={searchKeyword}
                             onChange={(e) => setSearchKeyword(e.target.value)}
@@ -103,10 +103,10 @@ export default function Voyages() {
                     </div>
                 </div>
                 <button className="btn btn-success" onClick={exportToExcel}>
-                    <FontAwesomeIcon icon={faFileDownload} /> Export to Excel
+                    <FontAwesomeIcon icon={faFileDownload} /> Export all trips to Excel
                 </button>
                 <Link className="btn btn-primary" to="/addvoyage">
-                    <FontAwesomeIcon icon={faPlusSquare} /> Add new voyage
+                    <FontAwesomeIcon icon={faPlusSquare} /> Add new trip
                 </Link>
             </div>
 
@@ -114,11 +114,11 @@ export default function Voyages() {
                 <table className="table border shadow">
                     <thead>
                     <tr>
-                        <th scope="col">Voyage ID</th>
-                        <th scope="col">Departure Location</th>
-                        <th scope="col">Arrival Location</th>
-                        <th scope="col">Departure Time</th>
-                        <th scope="col">Arrival Time</th>
+                        <th scope="col">Trip ID</th>
+                        <th scope="col">Departure location</th>
+                        <th scope="col">Arrival location</th>
+                        <th scope="col">Departure time</th>
+                        <th scope="col">Arrival time</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>

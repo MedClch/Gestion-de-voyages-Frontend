@@ -13,7 +13,6 @@ export default function ViewVoyage() {
         heurearrivee: '',
         prix: 0.0,
     });
-
     useEffect(() => {
         const loadVoyage = async () => {
             try {
@@ -23,50 +22,47 @@ export default function ViewVoyage() {
                 console.error('Error loading voyage details:', error.message);
             }
         };
-
         loadVoyage();
     }, [id]);
-
 
     const formatDate = (date) => {
         const formattedDate = new Date(date);
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDateString = formattedDate.toLocaleDateString(undefined, options);
         const formattedTimeString = formattedDate.toLocaleTimeString();
-        return `Le ${formattedDateString} à ${formattedTimeString}`;
+        return `${formattedDateString} at ${formattedTimeString}`;
     };
-
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2">
-                    <h2 className="text-center m-4">View voyage information</h2>
+                    <h2 className="text-center m-4">View trip information</h2>
                     <div className="card">
                         <div className="card-header">
                             <b>
-                                <i style={{ textDecoration: 'underline' }}>Details of voyage N°{id} :</i>
+                                <i style={{ textDecoration: 'underline' }}>Details of trip N°{id} :</i>
                             </b>
                             <br />
                             <br />
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">
-                                    <b>Departure Location: </b>
+                                    <b>Departure Location : </b>
                                     <b>{voyage.lieudepart}</b>
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Arrival Location: </b>
+                                    <b>Arrival Location : </b>
                                     <b>{voyage.lieuarrivee}</b>
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Departure Time: </b>
+                                    <b>Departure Time : </b>
                                     <b>{formatDate(voyage.heuredepart)}</b>
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Arrival Time: </b>
+                                    <b>Arrival Time : </b>
                                     <b>{formatDate(voyage.heurearrivee)}</b>
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Price: </b>
+                                    <b>Price : </b>
                                     <b>{voyage.prix} DH</b>
                                 </li>
                             </ul>
