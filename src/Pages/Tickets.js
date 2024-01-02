@@ -165,19 +165,19 @@ export default function Tickets() {
                             <tr key={ticket.idt}>
                                 <th scope="row">{ticket.idt}</th>
                                 <td>
-                                    <b>{voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].heuredepart
+                                    {voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].heuredepart
                                         ? `${formatDate(parseDateTime(voyageInfo[ticket.voyage.idv].heuredepart))} at ${formatTime(parseDateTime(voyageInfo[ticket.voyage.idv].heuredepart))}`
-                                        : "N/A"}</b>
+                                        : "N/A"}
                                 </td>
                                 <td>
-                                    <b>{voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].heurearrivee
+                                    {voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].heurearrivee
                                         ? `${formatDate(parseDateTime(voyageInfo[ticket.voyage.idv].heurearrivee))} at ${formatTime(parseDateTime(voyageInfo[ticket.voyage.idv].heurearrivee))}`
-                                        : "N/A"}</b>
+                                        : "N/A"}
                                 </td>
                                 <td>
-                                    <b>{voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].prix
+                                    {voyageInfo[ticket.voyage.idv] && voyageInfo[ticket.voyage.idv].prix
                                         ? voyageInfo[ticket.voyage.idv].prix +" DH"
-                                        : "N/A"}</b>
+                                        : "N/A"}
                                 </td>
                                 <td>
                                     <Link className="btn btn-primary mx-2" to={`/viewticket/${ticket.idt}`}>

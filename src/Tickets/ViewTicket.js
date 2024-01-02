@@ -15,7 +15,7 @@ export default function ViewTicket() {
 
     const loadTicket = async () => {
         try {
-            const result = await axios.get(`http://localhost:8099/tickets/${id}`);
+            const result = await axios.get(`http://localhost:8099/ticketss/${id}`);
             setTicket(result.data);
             const voyageResponse = await axios.get(`http://localhost:8099/voyages/${result.data.voyage.idv}`);
             setVoyageInfo(voyageResponse.data);
