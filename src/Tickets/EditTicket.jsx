@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Link, useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 export default function EditTicket() {
-    const { id } = useParams();
+    const {id} = useParams();
     const navigate = useNavigate();
 
     const [ticket, setTicket] = useState({
@@ -33,11 +33,12 @@ export default function EditTicket() {
                 toast.error('Error loading data');
             }
         }
+
         fetchData();
     }, [id]);
 
     const onInputChange = (e) => {
-        setTicket({ ...ticket, [e.target.name]: e.target.value });
+        setTicket({...ticket, [e.target.name]: e.target.value});
     };
 
     const onSubmit = async (e) => {
@@ -88,7 +89,7 @@ export default function EditTicket() {
                                     </option>
                                 ))}
                             </select>
-                            
+
                         </div>
                         <div className="mb-3">
                             <label htmlFor="clientId" className="form-label">
@@ -122,13 +123,6 @@ export default function EditTicket() {
         </div>
     );
 }
-
-
-
-
-
-
-
 
 
 // import React, { useState, useEffect } from "react";

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit, faTrash, faPlusSquare, faFileDownload } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEye, faEdit, faTrash, faPlusSquare, faFileDownload} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 import * as XLSX from "xlsx";
 
 export default function Voyages() {
@@ -86,10 +86,10 @@ export default function Voyages() {
         <div className="container">
             <div className="d-flex justify-content-between align-items-center">
                 <div>
-                    <br />
+                    <br/>
                     <div className="input-group mb-3">
                         <b>
-                            <h5 style={{ margin: "0 15px 0 0" }}>Search : </h5>
+                            <h5 style={{margin: "0 15px 0 0"}}>Search : </h5>
                         </b>
                         <input
                             type="text"
@@ -103,10 +103,10 @@ export default function Voyages() {
                     </div>
                 </div>
                 <button className="btn btn-success" onClick={exportToExcel}>
-                    <FontAwesomeIcon icon={faFileDownload} /> Export all trips to Excel
+                    <FontAwesomeIcon icon={faFileDownload}/> Export all trips to Excel
                 </button>
                 <Link className="btn btn-primary" to="/addvoyage">
-                    <FontAwesomeIcon icon={faPlusSquare} /> Add new trip
+                    <FontAwesomeIcon icon={faPlusSquare}/> Add new trip
                 </Link>
             </div>
 
@@ -119,6 +119,7 @@ export default function Voyages() {
                         <th scope="col">Arrival location</th>
                         <th scope="col">Departure time</th>
                         <th scope="col">Arrival time</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -130,15 +131,16 @@ export default function Voyages() {
                             <td>{voyage.lieuarrivee}</td>
                             <td>{formatDate(parseDateTime(voyage.heuredepart))} {formatTime(parseDateTime(voyage.heuredepart))}</td>
                             <td>{formatDate(parseDateTime(voyage.heurearrivee))} {formatTime(parseDateTime(voyage.heurearrivee))}</td>
+                            <td>{voyage.prix} DH</td>
                             <td>
                                 <Link className="btn btn-primary mx-2" to={`/viewvoyage/${voyage.idv}`}>
-                                    <FontAwesomeIcon icon={faEye} /> View
+                                    <FontAwesomeIcon icon={faEye}/> View
                                 </Link>
                                 <Link className="btn btn-success mx-2" to={`/editvoyage/${voyage.idv}`}>
-                                    <FontAwesomeIcon icon={faEdit} /> Edit
+                                    <FontAwesomeIcon icon={faEdit}/> Edit
                                 </Link>
                                 <button className="btn btn-danger mx-2" onClick={() => deleteVoyage(voyage.idv)}>
-                                    <FontAwesomeIcon icon={faTrash} /> Delete
+                                    <FontAwesomeIcon icon={faTrash}/> Delete
                                 </button>
                             </td>
                         </tr>

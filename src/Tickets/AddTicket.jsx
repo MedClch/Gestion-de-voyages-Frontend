@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {Link, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export default function AddTicket() {
     const navigate = useNavigate();
@@ -23,6 +23,7 @@ export default function AddTicket() {
                 toast.error("Error loading clients and voyages");
             }
         }
+
         fetchData();
     }, []);
 
@@ -36,7 +37,7 @@ export default function AddTicket() {
     };
 
     const onInputChange = (e) => {
-        setTicket({ ...ticket, [e.target.name]: e.target.value });
+        setTicket({...ticket, [e.target.name]: e.target.value});
     };
 
     const onSubmit = async (e) => {
@@ -64,9 +65,6 @@ export default function AddTicket() {
             toast.error("Error saving new ticket!");
         }
     };
-
-
-
 
 
     // const onSubmit = async (e) => {
@@ -149,13 +147,6 @@ export default function AddTicket() {
         </div>
     );
 }
-
-
-
-
-
-
-
 
 
 // import React, { useState, useEffect } from "react";
@@ -283,14 +274,6 @@ export default function AddTicket() {
 //         </div>
 //     );
 // }
-
-
-
-
-
-
-
-
 
 
 // import React, { useState, useEffect } from "react";
